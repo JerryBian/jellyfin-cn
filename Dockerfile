@@ -1,5 +1,7 @@
 FROM jellyfin/jellyfin:latest
 
+COPY ./ ./
+
 RUN apt update -y \
     && apt install -y fonts-noto-cjk-extra \
     && mkdir -p /config/fonts \
