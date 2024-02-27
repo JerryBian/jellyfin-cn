@@ -12,5 +12,7 @@ VOLUME ${JELLYFIN_DATA_DIR} ${JELLYFIN_CACHE_DIR}
 ENTRYPOINT [ "./jellyfin/jellyfin", \
              "--ffmpeg", "/usr/lib/jellyfin-ffmpeg/ffmpeg" ]
 
+ENV TZ=Asia/Shanghai
+
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
     CMD curl -Lk -fsS "${HEALTHCHECK_URL}" || exit 1
