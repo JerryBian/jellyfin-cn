@@ -3,7 +3,7 @@ FROM jellyfin/jellyfin:latest
 RUN apt update -y \
     && apt install -y fonts-noto-cjk-extra \
     && mkdir -p /config/fonts \
-    && cp ./fonts/* /config/fonts
+    && cp -r ./fonts /config/fonts
 
 EXPOSE 8096
 VOLUME ${JELLYFIN_DATA_DIR} ${JELLYFIN_CACHE_DIR}
