@@ -7,12 +7,8 @@ RUN apt update -y \
     && mkdir -p /config/fonts \
     && cp -r ./fonts /config/fonts
 
-EXPOSE 8096
-VOLUME ${JELLYFIN_DATA_DIR} ${JELLYFIN_CACHE_DIR}
-ENTRYPOINT [ "./jellyfin/jellyfin", \
-             "--ffmpeg", "/usr/lib/jellyfin-ffmpeg/ffmpeg" ]
-
 ENV TZ=Asia/Shanghai
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=3 \
-    CMD curl -Lk -fsS "${HEALTHCHECK_URL}" || exit 1
+EXPOSE 8096
+VOLUME /cache /config /media
+ENTRYPOINT dotnet /jellyfin/jellyfin.dll --datadir /config --cachedir /cache
